@@ -15,6 +15,20 @@ let draggedShip = null;
 let human, computer;
 
 const shipYardHTML = shipYard.innerHTML;
+function placeShipRandomly(gameboard, length) {
+  let placed = false;
+  while (!placed) {
+    const row = Math.floor(Math.random() * 10);
+    const col = Math.floor(Math.random() * 10);
+    const direction = Math.random() < 0.5 ? "horizontal" : "vertical";
+
+    if (gameboard.isValidPlacement(row, col, direction, length)) {
+      const ship = shipFactory(length);
+      gameboard.placeShip(ship, [row, col], direction);
+      placed = true;
+    }
+  }
+}
 
 function startGame() {
   gameOver = false;
@@ -24,10 +38,8 @@ function startGame() {
   human = playerFactory("real");
   computer = playerFactory("computer");
 
-  const computerShip1 = shipFactory(2);
-  const computerShip2 = shipFactory(3);
-  computer.gameboard.placeShip(computerShip1, [0, 0], "horizontal");
-  computer.gameboard.placeShip(computerShip2, [0, 3], "vertical");
+  placeShipRandomly(computer.gameboard, 2);
+  placeShipRandomly(computer.gameboard, 3);
 
   shipYard.innerHTML = shipYardHTML;
   attachDragListeners();
@@ -35,7 +47,7 @@ function startGame() {
   rotateBtn.textContent = "Rotate";
 
   renderBoard(human.gameboard, humanBoardEl);
-  renderBoard(computer.gameboard, computerBoardEl);
+  renderBoard(computer.gameboard, computerBoardEl, true);
 }
 
 function attachDragListeners() {
