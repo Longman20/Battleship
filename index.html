@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  <script defer src="./bundle.js"></script></head>
+  <body>
+    <div id="ship-yard">
+      <div
+        class="ship-piece"
+        draggable="true"
+        data-length="2"
+        data-direction="horizontal"
+      >
+        Ship (2)
+      </div>
+      <div
+        class="ship-piece"
+        draggable="true"
+        data-length="3"
+        data-direction="horizontal"
+      >
+        Ship (3)
+      </div>
+    </div>
+    <div class="controls">
+      <button id="rotate-btn">Rotate</button>
+      <button id="reset-btn">New Game</button>
+    </div>
+    <div class="boards">
+      <div id="human-board" class="gameboard"></div>
+      <div id="computer-board" class="gameboard"></div>
+    </div>
+  </body>
+</html>
