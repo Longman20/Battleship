@@ -1,4 +1,4 @@
-function renderBoard(gameboard, container) {
+function renderBoard(gameboard, container, hideShips = false) {
   container.innerHTML = "";
   const board = gameboard.board;
   for (let i = 0; i < 10; i++) {
@@ -10,8 +10,9 @@ function renderBoard(gameboard, container) {
 
       const isHit = gameboard.hitCells.some(([x, y]) => x === i && y === j);
       const isMiss = gameboard.missed.some(([x, y]) => x === i && y === j);
+      const hasShip = board[i][j] !== null;
 
-      if (board[i][j] !== null) {
+      if (hasShip && (!hideShips || isHit)) {
         cell.classList.add("ship");
       }
       if (isHit) {

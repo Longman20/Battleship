@@ -96,7 +96,7 @@ computerBoardEl.addEventListener("click", (e) => {
   const col = parseInt(e.target.dataset.col);
 
   computer.gameboard.receiveAttack([row, col]);
-  renderBoard(computer.gameboard, computerBoardEl);
+  renderBoard(computer.gameboard, computerBoardEl, true);
 
   if (computer.gameboard.allShipsSunk()) {
     gameOver = true;
